@@ -43,6 +43,17 @@ header{position:fixed;top:0;width:100%;display:flex;justify-content:space-betwee
 .content-section h2{margin-bottom:15px;color:#00796b;}
 .content-section p{color:#004d40;line-height:1.6;}
 
+/* HAKKIMDA ÖZEL */
+#about{
+  background: rgba(255,255,255,0.2);
+  border-radius: 15px;
+  padding: 30px;
+  margin: 40px auto;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+#about h2{text-align:center;text-shadow:1px 1px 3px rgba(0,0,0,0.2);}
+#about p{text-align:justify;margin-bottom:15px;font-size:1.1rem;}
+
 /* FOOTER */
 footer{margin-top:50px;text-align:center;color:#004d40;padding:20px;z-index:2;position:relative;}
 </style>
@@ -61,11 +72,12 @@ footer{margin-top:50px;text-align:center;color:#004d40;padding:20px;z-index:2;po
 <!-- NAV -->
 <nav class="nav" id="nav">
   <ul>
+    <li><a href="#home">Ana Sayfa</a></li>
+    <li><a href="#about">Hakkımda</a></li>
     <li><a href="#vocabulary">Kelimeler</a></li>
     <li><a href="#sentences">Cümleler</a></li>
     <li><a href="#quiz">Quiz</a></li>
     <li><a href="#notes">Notlar</a></li>
-    <li><a href="#about">Hakkımda</a></li>
     <li><a href="#sources">Kaynaklar</a></li>
   </ul>
 </nav>
@@ -81,10 +93,17 @@ footer{margin-top:50px;text-align:center;color:#004d40;padding:20px;z-index:2;po
 </section>
 
 <!-- SEKMELER -->
+<section id="about" class="content-section">
+  <h2>Hakkımda</h2>
+  <p>Merhaba! Ben <strong>Derya</strong>, Bilgisayar ve Öğretim Teknolojileri mezunuyum ve Almanca öğrenmeye A1 seviyesinde devam ediyorum.</p>
+  <p>Bu siteyi, dil öğrenme yolculuğumu paylaşmak, öğrendiklerimi derlemek ve hem kendim hem de ziyaretçiler için küçük bir motivasyon kaynağı oluşturmak için tasarladım.</p>
+  <p>Burada kelimeler, cümleler ve mini quizlerle Almanca pratik yapabilir, adım adım dil becerilerinizi geliştirebilirsiniz.</p>
+  <p>Amacım, öğrenmeyi eğlenceli ve erişilebilir hâle getirmek. <em>Hadi birlikte Almanca konuşalım!</em></p>
+</section>
+
 <section id="vocabulary" class="content-section">
   <h2>Kelimeler</h2>
   <p>Örnek: Hallo = Merhaba</p>
-  <p>Örnek: Danke = Teşekkürler</p>
 </section>
 
 <section id="sentences" class="content-section">
@@ -100,11 +119,6 @@ footer{margin-top:50px;text-align:center;color:#004d40;padding:20px;z-index:2;po
 <section id="notes" class="content-section">
   <h2>Notlar</h2>
   <p>Kısa gramer ve öğrenme notları burada.</p>
-</section>
-
-<section id="about" class="content-section">
-  <h2>Hakkımda</h2>
-  <p>Bilgisayar ve öğretim teknolojileri mezunu, Almanca A1 çalışıyor. Bu site motivasyon ve dil becerilerini göstermek için hazırlandı.</p>
 </section>
 
 <section id="sources" class="content-section">
@@ -141,21 +155,32 @@ for(let i=0;i<15;i++){
 // SEKME GÖRÜNÜRLÜĞÜ
 const sections = document.querySelectorAll('.content-section');
 const hero = document.getElementById('home');
+
 document.querySelectorAll('.btn').forEach(btn=>{
   btn.addEventListener('click',()=>{
     const target = btn.getAttribute('data-show');
-    hero.style.display='none'; // ana sayfayı gizle
+    hero.style.display='none';
     sections.forEach(sec=>sec.classList.remove('active'));
-    document.getElementById(target).classList.add('active');
+    if(target==='vocabulary'){ // Başla tıklayınca kelimeler + cümleler
+      document.getElementById('vocabulary').classList.add('active');
+      document.getElementById('sentences').classList.add('active');
+    } else {
+      document.getElementById(target).classList.add('active');
+    }
   });
 });
+
 document.querySelectorAll('.nav ul li a').forEach(link=>{
   link.addEventListener('click',e=>{
     e.preventDefault();
     const target = link.getAttribute('href').substring(1);
     sections.forEach(sec=>sec.classList.remove('active'));
-    document.getElementById(target).classList.add('active');
-    hero.style.display='none';
+    if(target==='home'){
+      hero.style.display='flex';
+    } else {
+      hero.style.display='none';
+      document.getElementById(target).classList.add('active');
+    }
     nav.classList.remove('active');
   });
 });
