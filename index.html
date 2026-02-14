@@ -6,7 +6,6 @@
 <title>Derya's Deutsch</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-/* Temel ayarlar */
 body{margin:0;font-family:'Poppins',sans-serif;background:linear-gradient(to bottom,#e0f7fa,#ffffff);overflow-x:hidden;scroll-behavior:smooth;}
 h1,h2,h3{color:#004d40;}
 p{color:#00796b;line-height:1.5;}
@@ -20,6 +19,8 @@ p{color:#00796b;line-height:1.5;}
 #home h1{font-size:3em;display:flex;align-items:center;gap:10px;}
 #home img{width:50px;}
 #home p{font-size:1.5em;margin-top:15px;}
+#home button{margin-top:20px;padding:12px 25px;background:#00796b;color:white;border:none;border-radius:8px;font-size:1em;cursor:pointer;transition:0.3s;}
+#home button:hover{background:#004d40;}
 
 /* Hamburger Menü */
 .hamburger{position:fixed;top:20px;right:25px;width:35px;height:4px;background-color:#00796b;cursor:pointer;z-index:10;border-radius:2px;}
@@ -68,18 +69,21 @@ for(let i=0;i<30;i++){
 <!-- Hamburger Menü -->
 <div class="hamburger" onclick="toggleMenu()"></div>
 <nav id="menu">
-<a href="#" onclick="showSection('lessons')">Dersler</a>
-<a href="#" onclick="showSection('words')">Kelimeler</a>
-<a href="#" onclick="showSection('quiz')">Test</a>
-<a href="#" onclick="showSection('about')">Hakkında</a>
+  <a href="#" onclick="showSection('home')">Anasayfa</a>
+  <a href="#" onclick="showSection('lessons')">Dersler</a>
+  <a href="#" onclick="showSection('words')">Kelimeler</a>
+  <a href="#" onclick="showSection('quiz')">Test</a>
+  <a href="#" onclick="showSection('about')">Hakkında</a>
 </nav>
 
 <script>
-function toggleMenu(){document.getElementById("menu").classList.toggle("active");}
+function toggleMenu(){
+  document.getElementById("menu").classList.toggle("active");
+}
 function showSection(id){
-  document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
-  toggleMenu();
+  document.getElementById("menu").classList.remove("active");
 }
 </script>
 
