@@ -1,0 +1,117 @@
+* { box-sizing:border-box; margin:0; padding:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+
+/* Arka plan – su altı */
+body {
+  background: linear-gradient(to bottom,#a0f0ff 0%,#22c1ee 50%,#0d3a5e 100%);
+  background-attachment: fixed;
+  color:white;
+  overflow-x:hidden;
+  min-height:100vh;
+  position:relative;
+}
+
+/* Hafif ışık hareketi */
+body::before {
+  content:'';
+  position:fixed;
+  inset:0;
+  background:radial-gradient(circle at 50% 30%, rgba(255,255,255,0.08), transparent 70%);
+  animation: lightMove 8s ease-in-out infinite;
+  pointer-events:none;
+  z-index:0;
+}
+@keyframes lightMove {
+  0%{transform:translate(0,0) rotate(0deg);}
+  25%{transform:translate(10px,-10px) rotate(1deg);}
+  50%{transform:translate(-10px,10px) rotate(-1deg);}
+  75%{transform:translate(5px,-5px) rotate(0.5deg);}
+  100%{transform:translate(0,0) rotate(0deg);}
+}
+
+/* Marka */
+.brand {
+  position:fixed;
+  top:20px;
+  left:24px;
+  z-index:3;
+}
+.brand .title {
+  font-size:32px;
+  font-weight:700;
+  color:#ffffff;
+  text-shadow:0 0 6px #a0f0ff, 0 0 12px #22c1ee, 0 0 18px #0d3a5e;
+}
+.brand .subtitle {
+  font-size:14px;
+  color:#e0f7ff;
+  margin-top:4px;
+}
+
+/* Dalgalanan bayrak */
+.flag {
+  display:inline-block;
+  width:24px;
+  height:16px;
+  border-radius:4px;
+  background:linear-gradient(to bottom, black 33%, red 33% 66%, gold 66%);
+  animation:wave 1.5s ease-in-out infinite alternate;
+  margin-left:8px;
+}
+@keyframes wave {
+  0% { transform: rotate(0deg); }
+  50% { transform: rotate(5deg); }
+  100% { transform: rotate(-5deg); }
+}
+
+/* İçerik */
+.content { padding:120px 40px; max-width:520px; position:relative; z-index:2; }
+.card {
+  background:rgba(255,255,255,0.85);
+  border:1px solid rgba(255,255,255,0.9);
+  border-radius:20px;
+  padding:24px;
+  margin-bottom:18px;
+  transition:0.25s;
+  backdrop-filter:blur(10px);
+  color:#020617;
+  box-shadow:0 10px 30px rgba(0,0,0,0.12);
+}
+.card:hover{transform:translateY(-3px);}
+.card-title{font-size:12px;color:#0284c7;margin-bottom:12px;letter-spacing:0.6px;text-transform:uppercase;}
+.goal{font-size:20px;font-weight:500;}
+.last-item{font-size:16px;}
+.actions{display:flex;gap:12px;}
+button{
+  flex:1;
+  background:linear-gradient(135deg,#0ea5e9,#0369a1);
+  color:white;
+  border:none;
+  padding:11px;
+  border-radius:14px;
+  cursor:pointer;
+  transition:0.2s;
+  font-size:14px;
+  font-weight:500;
+  box-shadow:0 6px 14px rgba(0,0,0,0.18);
+}
+button:hover{transform:scale(1.04);}
+
+/* Kabarcıklar */
+.bubbles{position:fixed; inset:0; overflow:hidden; pointer-events:none; z-index:1;}
+.bubbles span{
+  position:absolute;
+  bottom:-80px;
+  border-radius:50%;
+  animation:rise infinite ease-in;
+  background:radial-gradient(circle at 30% 30%,rgba(255,255,255,0.95),rgba(255,255,255,0.45) 25%,rgba(255,255,255,0.12) 60%,rgba(255,255,255,0.05));
+  backdrop-filter:blur(4px);
+  box-shadow: inset -10px -10px 20px rgba(255,255,255,0.35), inset 8px 8px 16px rgba(255,255,255,0.18), 0 14px 32px rgba(0,0,0,0.2);
+}
+.bubbles span:nth-child(1){left:8%;width:20px;height:20px;animation-duration:12s;}
+.bubbles span:nth-child(2){left:18%;width:32px;height:32px;animation-duration:16s;}
+.bubbles span:nth-child(3){left:33%;width:18px;height:18px;animation-duration:14s;}
+.bubbles span:nth-child(4){left:48%;width:40px;height:40px;animation-duration:18s;}
+.bubbles span:nth-child(5){left:63%;width:26px;height:26px;animation-duration:15s;}
+.bubbles span:nth-child(6){left:76%;width:20px;height:20px;animation-duration:13s;}
+.bubbles span:nth-child(7){left:88%;width:48px;height:48px;animation-duration:20s;}
+@keyframes rise {from{transform:translateY(0) scale(0.9);opacity:0;}10%{opacity:1;}to{transform:translateY(-120vh) scale(1.2);opacity:0;}}
