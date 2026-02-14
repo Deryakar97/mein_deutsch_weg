@@ -4,64 +4,62 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Derya's Deutsch</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-/* Temel stil ve arka plan */
-body {
-  margin:0; font-family: 'Arial', sans-serif;
-  background: linear-gradient(to bottom, #e0f7fa, #ffffff);
-  overflow-x:hidden;
-}
+/* Temel ayarlar */
+body{margin:0;font-family:'Poppins',sans-serif;background:linear-gradient(to bottom,#e0f7fa,#ffffff);overflow-x:hidden;scroll-behavior:smooth;}
+h1,h2,h3{color:#004d40;}
+p{color:#00796b;line-height:1.5;}
 
 /* Su kabarcıkları */
-.bubble { position:absolute; bottom:-50px; border-radius:50%; background: rgba(0,150,136,0.4); animation: rise 10s infinite linear; }
-@keyframes rise {0%{transform: translateY(0) scale(1);} 100%{transform: translateY(-1000px) scale(1.5);}}
+.bubble{position:absolute;bottom:-50px;border-radius:50%;background: rgba(0,150,136,0.3);animation: rise 12s infinite linear;}
+@keyframes rise{0%{transform:translateY(0) scale(1);}100%{transform:translateY(-1200px) scale(1.5);}}
 
 /* Ana Sayfa */
-#home {display:flex; flex-direction:column; align-items:center; justify-content:center; height:100vh; text-align:center; position:relative; z-index:1;}
-#home h1 {font-size:3em; color:#004d40; display:flex; align-items:center; gap:10px;}
-#home p {font-size:1.5em; color:#00796b; margin-top:15px;}
-#home img {width:50px;}
+#home{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh;text-align:center;position:relative;z-index:1;}
+#home h1{font-size:3em;display:flex;align-items:center;gap:10px;}
+#home img{width:50px;}
+#home p{font-size:1.5em;margin-top:15px;}
 
 /* Hamburger Menü */
-.hamburger {position:fixed; top:15px; right:20px; width:30px; height:3px; background-color:#00796b; cursor:pointer; z-index:2;}
-.hamburger::before, .hamburger::after {content:""; position:absolute; width:30px; height:3px; background:#00796b;}
-.hamburger::before {transform: translateY(-10px);}
-.hamburger::after {transform: translateY(10px);}
-nav {position:fixed; top:0; left:-250px; width:200px; height:100%; background:#004d40; color:#fff; padding:50px 20px; transition:left 0.3s; z-index:2;}
-nav a {display:block; color:#fff; text-decoration:none; margin:15px 0; font-weight:bold;}
-nav a:hover {text-decoration: underline;}
-nav.active {left:0;}
+.hamburger{position:fixed;top:20px;right:25px;width:35px;height:4px;background-color:#00796b;cursor:pointer;z-index:10;border-radius:2px;}
+.hamburger::before,.hamburger::after{content:"";position:absolute;width:35px;height:4px;background:#00796b;border-radius:2px;}
+.hamburger::before{transform:translateY(-12px);}
+.hamburger::after{transform:translateY(12px);}
+nav{position:fixed;top:0;left:-260px;width:220px;height:100%;background:#004d40;color:#fff;padding:60px 20px;transition:left 0.3s;z-index:9;border-right:2px solid #00796b;}
+nav a{display:block;color:#fff;text-decoration:none;margin:20px 0;font-weight:600;font-size:1.1em;}
+nav a:hover{text-decoration:underline;}
+nav.active{left:0;}
 
 /* Bölümler */
-section {padding:60px 20px; max-width:900px; margin:auto; display:none;}
-section.active {display:block;}
-h2,h3 {color:#004d40;}
+section{padding:60px 20px;max-width:1000px;margin:auto;display:none;}
+section.active{display:block;}
 
 /* Kelime Kartları */
-.card-container {display:flex; flex-wrap:wrap; gap:10px; justify-content:center;}
-.card {background:#b2dfdb; padding:15px; border-radius:10px; cursor:pointer; flex:1 1 120px; text-align:center; transition: transform 0.2s;}
-.card:hover {transform: scale(1.05);}
+.card-container{display:flex;flex-wrap:wrap;gap:15px;justify-content:center;}
+.card{background:#b2dfdb;padding:20px;border-radius:12px;cursor:pointer;flex:1 1 130px;text-align:center;transition: transform 0.3s, background 0.3s;}
+.card:hover{transform:scale(1.1);background:#80cbc4;}
 
 /* Quiz */
-.quiz-question {margin-bottom:10px;}
-.quiz-option {margin:5px 0; padding:10px; background:#e0f2f1; border-radius:5px; cursor:pointer; transition:0.2s;}
-.quiz-option:hover {background:#b2dfdb;}
-.correct {background:#81c784 !important;}
-.wrong {background:#e57373 !important;}
+.quiz-question{margin-bottom:15px;}
+.quiz-option{margin:8px 0;padding:12px;background:#e0f2f1;border-radius:8px;cursor:pointer;transition:0.2s;}
+.quiz-option:hover{background:#b2dfdb;}
+.correct{background:#81c784 !important;}
+.wrong{background:#e57373 !important;}
 
 /* Footer */
-footer {text-align:center; padding:20px; background:#004d40; color:#fff; margin-top:20px;}
+footer{text-align:center;padding:20px;background:#004d40;color:#fff;margin-top:20px;}
 </style>
 </head>
 <body>
 
 <!-- Su kabarcıkları -->
 <script>
-for(let i=0;i<25;i++){
+for(let i=0;i<30;i++){
   let bubble=document.createElement("div");
   bubble.className="bubble";
   bubble.style.left=Math.random()*100+"%";
-  bubble.style.width=bubble.style.height=10+Math.random()*30+"px";
+  bubble.style.width=bubble.style.height=15+Math.random()*25+"px";
   bubble.style.animationDuration=5+Math.random()*10+"s";
   document.body.appendChild(bubble);
 }
@@ -70,16 +68,16 @@ for(let i=0;i<25;i++){
 <!-- Hamburger Menü -->
 <div class="hamburger" onclick="toggleMenu()"></div>
 <nav id="menu">
-  <a href="#" onclick="showSection('lessons')">Dersler</a>
-  <a href="#" onclick="showSection('words')">Kelimeler</a>
-  <a href="#" onclick="showSection('quiz')">Test</a>
-  <a href="#" onclick="showSection('about')">Hakkında</a>
+<a href="#" onclick="showSection('lessons')">Dersler</a>
+<a href="#" onclick="showSection('words')">Kelimeler</a>
+<a href="#" onclick="showSection('quiz')">Test</a>
+<a href="#" onclick="showSection('about')">Hakkında</a>
 </nav>
 
 <script>
-function toggleMenu(){ document.getElementById("menu").classList.toggle("active"); }
+function toggleMenu(){document.getElementById("menu").classList.toggle("active");}
 function showSection(id){
-  document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   toggleMenu();
 }
@@ -87,45 +85,46 @@ function showSection(id){
 
 <!-- Ana Sayfa -->
 <section id="home" class="active">
-  <h1><img src="https://upload.wikimedia.org/wikipedia/en/b/ba/Flag_of_Germany.svg" alt="Alman Bayrağı"> Derya's Deutsch</h1>
-  <p>„Kleine Schritte führen zu großen Erfolgen!“</p>
+<h1><img src="https://upload.wikimedia.org/wikipedia/en/b/ba/Flag_of_Germany.svg" alt="Alman Bayrağı"> Derya's Deutsch</h1>
+<p>„Kleine Schritte führen zu großen Erfolgen!“</p>
+<button onclick="showSection('lessons')">Derslere Başla</button>
 </section>
 
 <!-- Dersler -->
 <section id="lessons">
-  <h2>Dersler (A1 Seviye)</h2>
-  <h3>1. Alfabe & Telaffuz</h3>
-  <p>A, B, C ... Örnek: Apfel (elma), Buch (kitap)</p>
-  <h3>2. Selamlaşmalar</h3>
-  <p>Hallo, Guten Morgen, Wie geht's?, Tschüss</p>
-  <h3>3. Kendini Tanıtma</h3>
-  <p>Ich heiße..., Ich bin ... Jahre alt, Ich komme aus..., Ich bin Lehrer/Lehrerin</p>
-  <h3>4. Sayılar & Tarih</h3>
-  <p>1-100, Montag-Sonntag, Januar-Dezember, Uhrzeiten</p>
-  <h3>5. Aile & Arkadaşlar</h3>
-  <p>die Mutter, der Vater, die Schwester, der Bruder, Freund, Freundin</p>
-  <h3>6. Ev & Eşyalar</h3>
-  <p>das Haus, das Zimmer, der Tisch, der Stuhl, die Küche</p>
-  <h3>7. Yiyecek & İçecek</h3>
-  <p>das Brot, die Milch, das Wasser, der Apfel, die Banane</p>
-  <h3>8. Hobiler & Günlük Aktiviteler</h3>
-  <p>Sport, Lesen, Spazieren, Musik hören</p>
-  <h3>9. Basit Cümleler & Sorular</h3>
-  <p>Was ist das? Woher kommst du? Wie alt bist du?</p>
+<h2>Dersler (A1 Seviye)</h2>
+<h3>1. Alfabe & Telaffuz</h3>
+<p>A, B, C ... Örnek: Apfel (elma), Buch (kitap)</p>
+<h3>2. Selamlaşmalar</h3>
+<p>Hallo, Guten Morgen, Wie geht's?, Tschüss</p>
+<h3>3. Kendini Tanıtma</h3>
+<p>Ich heiße Derya, Ich bin 28 Jahre alt, Ich komme aus der Türkei, Ich bin Lehrerin</p>
+<h3>4. Sayılar & Tarih</h3>
+<p>1-100, Montag-Sonntag, Januar-Dezember, Uhrzeiten</p>
+<h3>5. Aile & Arkadaşlar</h3>
+<p>die Mutter, der Vater, die Schwester, der Bruder, Freund, Freundin</p>
+<h3>6. Ev & Eşyalar</h3>
+<p>das Haus, das Zimmer, der Tisch, der Stuhl, die Küche</p>
+<h3>7. Yiyecek & İçecek</h3>
+<p>das Brot, die Milch, das Wasser, der Apfel, die Banane</p>
+<h3>8. Hobiler & Günlük Aktiviteler</h3>
+<p>Sport, Lesen, Spazieren, Musik hören</p>
+<h3>9. Basit Cümleler & Sorular</h3>
+<p>Was ist das? Woher kommst du? Wie alt bist du?</p>
 </section>
 
 <!-- Kelimeler -->
 <section id="words">
 <h2>Kelimeler</h2>
 <div class="card-container">
-  <div class="card" onclick="alert('Elma')">Apfel</div>
-  <div class="card" onclick="alert('Ekmek')">Brot</div>
-  <div class="card" onclick="alert('Su')">Wasser</div>
-  <div class="card" onclick="alert('Kitap')">Buch</div>
-  <div class="card" onclick="alert('Kedi')">Katze</div>
-  <div class="card" onclick="alert('Ev')">Haus</div>
-  <div class="card" onclick="alert('Masa')">Tisch</div>
-  <div class="card" onclick="alert('Sandalye')">Stuhl</div>
+<div class="card" onclick="alert('Elma')">Apfel</div>
+<div class="card" onclick="alert('Ekmek')">Brot</div>
+<div class="card" onclick="alert('Su')">Wasser</div>
+<div class="card" onclick="alert('Kitap')">Buch</div>
+<div class="card" onclick="alert('Kedi')">Katze</div>
+<div class="card" onclick="alert('Ev')">Haus</div>
+<div class="card" onclick="alert('Masa')">Tisch</div>
+<div class="card" onclick="alert('Sandalye')">Stuhl</div>
 </div>
 </section>
 
@@ -156,13 +155,12 @@ function checkAnswer(el,isCorrect){
 <!-- Hakkında -->
 <section id="about">
 <h2>Hakkında</h2>
-<p>Derya's Deutsch, A1 seviyesinden başlayarak kelime ve basit cümlelerle Almanca öğrenmenizi sağlar. Tüm dersler ve testler interaktif ve görselli şekilde hazırlanmıştır.</p>
+<p>Derya's Deutsch, A1 seviyesinden başlayarak Almancayı interaktif ve modern yöntemlerle öğretir. Tüm dersler, kelimeler ve quizler kullanıcı dostu şekilde hazırlanmıştır.</p>
 </section>
 
 <!-- Footer -->
 <footer>
 © 2026 Derya's Deutsch
 </footer>
-
 </body>
 </html>
