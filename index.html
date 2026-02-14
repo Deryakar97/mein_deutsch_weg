@@ -3,48 +3,70 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Derya’s Deutsch</title>
-  <link rel="stylesheet" href="style.css?v=2026">
+  <title>Mein Deutsch Weg</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-  <!-- Marka -->
-  <div class="brand">
-    <div class="title">Derya’s Deutsch <span class="flag"></span></div>
-    <div class="subtitle">Dil öğrenmek, dalış gibidir</div>
-  </div>
-
-  <!-- Kabarcıklar -->
-  <div class="bubbles">
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
-
-  <!-- İçerik -->
-  <main class="content">
-    <section class="card">
-      <div class="card-title">Bugünkü Hedef</div>
-      <div class="goal">10 kelime · 1 konu · 1 tekrar</div>
-    </section>
-
-    <section class="card">
-      <div class="card-title">Devam Et</div>
-      <div class="actions">
-        <button>Çalışmaya Devam Et</button>
-        <button>Tekrar Yap</button>
+  <div class="container">
+    <!-- Ana içerik -->
+    <div class="content">
+      <div id="home" class="tab-content active">
+        <h1>Mein Deutsch Weg</h1>
+        <p>Almanca öğrenmeye hoş geldiniz! Aşağıdaki butonlarla hızlıca başlayabilirsiniz.</p>
+        <div class="home-buttons">
+          <button onclick="openTab('lessons')">Derslere Başla</button>
+          <button onclick="openTab('quiz')">Quiz Yap</button>
+          <button onclick="openTab('resources')">Kaynaklar</button>
+        </div>
       </div>
-    </section>
 
-    <section class="card">
-      <div class="card-title">Son Çalışılan Konu</div>
-      <div class="last-item">Akkusativ · Zamirler</div>
-    </section>
-  </main>
+      <div id="lessons" class="tab-content">
+        <h2>Dersler</h2>
+        <p>Alfabe, temel kelimeler, cümle yapısı ve dil bilgisi dersleri burada olacak.</p>
+      </div>
 
+      <div id="quiz" class="tab-content">
+        <h2>Quiz</h2>
+        <p>Öğrendiklerini test et: kısa quizler burada olacak.</p>
+      </div>
+
+      <div id="resources" class="tab-content">
+        <h2>Kaynaklar</h2>
+        <p>PDF, videolar ve ekstra alıştırmalar buradan ulaşılabilir.</p>
+      </div>
+    </div>
+
+    <!-- Sağ sidebar sekmeler -->
+    <div class="sidebar">
+      <button class="tab-btn active" data-tab="home">Ana Sayfa</button>
+      <button class="tab-btn" data-tab="lessons">Dersler</button>
+      <button class="tab-btn" data-tab="quiz">Quiz</button>
+      <button class="tab-btn" data-tab="resources">Kaynaklar</button>
+    </div>
+  </div>
+
+  <script>
+    const buttons = document.querySelectorAll(".tab-btn");
+    const contents = document.querySelectorAll(".tab-content");
+
+    buttons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        buttons.forEach(b => b.classList.remove("active"));
+        contents.forEach(c => c.classList.remove("active"));
+
+        btn.classList.add("active");
+        document.getElementById(btn.dataset.tab).classList.add("active");
+      });
+    });
+
+    function openTab(tabId) {
+      document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+      document.querySelectorAll(".tab-content").forEach(c => c.classList.remove("active"));
+
+      const btn = document.querySelector(`.tab-btn[data-tab="${tabId}"]`);
+      if (btn) btn.classList.add("active");
+      document.getElementById(tabId).classList.add("active");
+    }
+  </script>
 </body>
-</html>
+  </html>
