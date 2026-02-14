@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mein Weg – Almanca Öğren</title>
+<title>Derya's Deutsch</title>
 <style>
   body {
     margin:0;
@@ -11,47 +11,7 @@
     background: linear-gradient(to bottom, #e0f7fa, #ffffff);
     overflow-x: hidden;
   }
-  /* Hamburger Menü */
-  .menu-toggle {display:none;}
-  .hamburger {
-    position: fixed;
-    top: 15px; right: 20px;
-    width: 30px; height: 3px;
-    background-color: #00796b;
-    transition: all 0.3s;
-    cursor:pointer;
-  }
-  .hamburger::before, .hamburger::after {
-    content:""; position:absolute; width:30px; height:3px; background:#00796b; transition: all 0.3s;
-  }
-  .hamburger::before {transform: translateY(-10px);}
-  .hamburger::after {transform: translateY(10px);}
-  nav {position: fixed; top:0; left:-250px; width:200px; height:100%; background:#004d40; color:#fff; padding:50px 20px; transition: left 0.3s;}
-  nav a {display:block; color:#fff; text-decoration:none; margin:15px 0; font-weight:bold;}
-  nav a:hover {text-decoration: underline;}
-  nav.active {left:0;}
-  
-  /* Bölümler */
-  section {padding:60px 20px; max-width:800px; margin:auto;}
-  h1,h2,h3 {color:#004d40;}
-  
-  /* Kelime Kartları */
-  .card-container {display:flex; flex-wrap:wrap; gap:10px;}
-  .card {
-    background:#b2dfdb; padding:15px; border-radius:10px; cursor:pointer; flex:1 1 120px; text-align:center; transition: transform 0.2s;
-  }
-  .card:hover {transform: scale(1.05);}
-  
-  /* Quiz */
-  .quiz-question {margin-bottom:10px;}
-  .quiz-option {margin:5px 0; padding:10px; background:#e0f2f1; border-radius:5px; cursor:pointer; transition: 0.2s;}
-  .quiz-option:hover {background:#b2dfdb;}
-  .correct {background: #81c784 !important;}
-  .wrong {background: #e57373 !important;}
-  
-  /* Footer */
-  footer {text-align:center; padding:20px; background:#004d40; color:#fff;}
-  
+
   /* Su kabarcıkları */
   .bubble {
     position:absolute;
@@ -65,6 +25,68 @@
     0% {transform: translateY(0) scale(1);}
     100% {transform: translateY(-1000px) scale(1.5);}
   }
+
+  /* Başlık ve motivasyon */
+  #home {
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    height:100vh; text-align:center; position:relative; z-index:1;
+  }
+  #home h1 {
+    font-size:3em; color:#004d40; display:flex; align-items:center; gap:10px;
+  }
+  #home p {
+    font-size:1.5em; color:#00796b; margin-top:15px;
+  }
+  #home img {
+    width:50px;
+  }
+
+  /* Hamburger Menü */
+  .menu-toggle {display:none;}
+  .hamburger {
+    position: fixed;
+    top: 15px; right: 20px;
+    width: 30px; height: 3px;
+    background-color: #00796b;
+    transition: all 0.3s;
+    cursor:pointer;
+    z-index:2;
+  }
+  .hamburger::before, .hamburger::after {
+    content:""; position:absolute; width:30px; height:3px; background:#00796b; transition: all 0.3s;
+  }
+  .hamburger::before {transform: translateY(-10px);}
+  .hamburger::after {transform: translateY(10px);}
+
+  nav {
+    position: fixed; top:0; left:-250px; width:200px; height:100%;
+    background:#004d40; color:#fff; padding:50px 20px; transition: left 0.3s; z-index:2;
+  }
+  nav a {display:block; color:#fff; text-decoration:none; margin:15px 0; font-weight:bold;}
+  nav a:hover {text-decoration: underline;}
+  nav.active {left:0;}
+
+  /* Bölümler */
+  section {padding:60px 20px; max-width:800px; margin:auto; display:none;}
+  section.active {display:block;}
+  h2,h3 {color:#004d40;}
+
+  /* Kelime Kartları */
+  .card-container {display:flex; flex-wrap:wrap; gap:10px;}
+  .card {
+    background:#b2dfdb; padding:15px; border-radius:10px; cursor:pointer; flex:1 1 120px; text-align:center; transition: transform 0.2s;
+  }
+  .card:hover {transform: scale(1.05);}
+
+  /* Quiz */
+  .quiz-question {margin-bottom:10px;}
+  .quiz-option {margin:5px 0; padding:10px; background:#e0f2f1; border-radius:5px; cursor:pointer; transition: 0.2s;}
+  .quiz-option:hover {background:#b2dfdb;}
+  .correct {background: #81c784 !important;}
+  .wrong {background: #e57373 !important;}
+
+  /* Footer */
+  footer {text-align:center; padding:20px; background:#004d40; color:#fff; margin-top:20px;}
 </style>
 </head>
 <body>
@@ -84,23 +106,28 @@
 <!-- Hamburger Menü -->
 <div class="hamburger" onclick="toggleMenu()"></div>
 <nav id="menu">
-  <a href="#home">Ana Sayfa</a>
-  <a href="#lessons">Dersler</a>
-  <a href="#words">Kelimeler</a>
-  <a href="#quiz">Test</a>
-  <a href="#about">Hakkında</a>
+  <a href="#" onclick="showSection('lessons')">Dersler</a>
+  <a href="#" onclick="showSection('words')">Kelimeler</a>
+  <a href="#" onclick="showSection('quiz')">Test</a>
+  <a href="#" onclick="showSection('about')">Hakkında</a>
 </nav>
 
 <script>
   function toggleMenu(){
     document.getElementById("menu").classList.toggle("active");
   }
+
+  function showSection(id){
+    document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    toggleMenu();
+  }
 </script>
 
 <!-- Ana Sayfa -->
-<section id="home">
-  <h1>Willkommen – Mein Weg</h1>
-  <p>Almanca öğrenmeye A1 seviyesinden başlayın. Dersler, kelime kartları ve mini quizlerle pratik yapabilirsiniz.</p>
+<section id="home" class="active">
+  <h1><img src="https://upload.wikimedia.org/wikipedia/en/b/ba/Flag_of_Germany.svg" alt="Alman Bayrağı"> Derya's Deutsch</h1>
+  <p>„Kleine Schritte führen zu großen Erfolgen!“</p>
 </section>
 
 <!-- Dersler -->
@@ -112,18 +139,6 @@
   <p>Merhaba – Hallo, Günaydın – Guten Morgen, Nasılsın? – Wie geht's?</p>
   <h3>3. Kendini Tanıtma</h3>
   <p>İsim, yaş, ülke, meslek: Ich heiße..., Ich bin ... Jahre alt, Ich komme aus..., Ich bin Lehrer/Lehrerin</p>
-  <h3>4. Sayılar ve Tarih</h3>
-  <p>1–100, günler (Montag, Dienstag...), aylar (Januar, Februar...), saat ve tarih</p>
-  <h3>5. Aile ve Arkadaşlar</h3>
-  <p>die Mutter, der Vater, die Schwester, der Bruder, Freund, Freundin</p>
-  <h3>6. Ev ve Eşyalar</h3>
-  <p>das Haus, das Zimmer, der Tisch, der Stuhl, die Küche</p>
-  <h3>7. Yiyecek ve İçecek</h3>
-  <p>das Brot, die Milch, das Wasser, der Apfel, die Banane</p>
-  <h3>8. Hobiler ve Günlük Aktiviteler</h3>
-  <p>Sport, Lesen, Spazieren, Musik hören</p>
-  <h3>9. Basit Cümleler ve Sorular</h3>
-  <p>Was ist das? Woher kommst du? Wie alt bist du?</p>
 </section>
 
 <!-- Kelime Kartları -->
@@ -175,8 +190,8 @@
 
 <!-- Footer -->
 <footer>
-  © 2026 Mein Weg – Almanca Öğren
+  © 2026 Derya's Deutsch
 </footer>
 
 </body>
-  </html>
+</html>
