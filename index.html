@@ -6,9 +6,10 @@
 <title>Derya's Deutsch</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-body{margin:0;font-family:'Poppins',sans-serif;background:linear-gradient(to bottom,#e0f7fa,#ffffff);overflow-x:hidden;scroll-behavior:smooth;}
+body{margin:0;font-family:'Poppins',sans-serif;background:linear-gradient(to bottom,#e0f7fa,#ffffff);overflow-x:hidden;}
 h1,h2,h3{color:#004d40;}
 p{color:#00796b;line-height:1.5;}
+button{cursor:pointer;}
 
 /* Su kabarcıkları */
 .bubble{position:absolute;bottom:-50px;border-radius:50%;background: rgba(0,150,136,0.3);animation: rise 12s infinite linear;}
@@ -19,7 +20,7 @@ p{color:#00796b;line-height:1.5;}
 #home h1{font-size:3em;display:flex;align-items:center;gap:10px;}
 #home img{width:50px;}
 #home p{font-size:1.5em;margin-top:15px;}
-#home button{margin-top:20px;padding:12px 25px;background:#00796b;color:white;border:none;border-radius:8px;font-size:1em;cursor:pointer;transition:0.3s;}
+#home button{margin-top:20px;padding:12px 25px;background:#00796b;color:white;border:none;border-radius:8px;font-size:1em;transition:0.3s;}
 #home button:hover{background:#004d40;}
 
 /* Hamburger Menü */
@@ -77,11 +78,9 @@ for(let i=0;i<30;i++){
 </nav>
 
 <script>
-function toggleMenu(){
-  document.getElementById("menu").classList.toggle("active");
-}
+function toggleMenu(){document.getElementById("menu").classList.toggle("active");}
 function showSection(id){
-  document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   document.getElementById("menu").classList.remove("active");
 }
@@ -121,38 +120,61 @@ function showSection(id){
 <section id="words">
 <h2>Kelimeler</h2>
 <div class="card-container">
-<div class="card" onclick="alert('Elma')">Apfel</div>
-<div class="card" onclick="alert('Ekmek')">Brot</div>
-<div class="card" onclick="alert('Su')">Wasser</div>
-<div class="card" onclick="alert('Kitap')">Buch</div>
-<div class="card" onclick="alert('Kedi')">Katze</div>
-<div class="card" onclick="alert('Ev')">Haus</div>
-<div class="card" onclick="alert('Masa')">Tisch</div>
-<div class="card" onclick="alert('Sandalye')">Stuhl</div>
-</div>
-</section>
-
-<!-- Quiz -->
-<section id="quiz">
-<h2>Mini Test</h2>
-<div class="quiz-question">
-<p>1. "Apfel" nedir?</p>
-<div class="quiz-option" onclick="checkAnswer(this,true)">Elma</div>
-<div class="quiz-option" onclick="checkAnswer(this,false)">Ekmek</div>
-<div class="quiz-option" onclick="checkAnswer(this,false)">Su</div>
-</div>
-<div class="quiz-question">
-<p>2. "Brot" nedir?</p>
-<div class="quiz-option" onclick="checkAnswer(this,true)">Ekmek</div>
-<div class="quiz-option" onclick="checkAnswer(this,false)">Kitap</div>
-<div class="quiz-option" onclick="checkAnswer(this,false)">Kedi</div>
+<div class="card" onclick="speak('Apfel')">Apfel</div>
+<div class="card" onclick="speak('Brot')">Brot</div>
+<div class="card" onclick="speak('Wasser')">Wasser</div>
+<div class="card" onclick="speak('Buch')">Buch</div>
+<div class="card" onclick="speak('Katze')">Katze</div>
+<div class="card" onclick="speak('Haus')">Haus</div>
+<div class="card" onclick="speak('Tisch')">Tisch</div>
+<div class="card" onclick="speak('Stuhl')">Stuhl</div>
 </div>
 </section>
 
 <script>
-function checkAnswer(el,isCorrect){
-  if(isCorrect){el.classList.add("correct"); alert("Doğru!");}
-  else{el.classList.add("wrong"); alert("Yanlış!");}
+function speak(text){
+  const msg = new SpeechSynthesisUtterance();
+  msg.lang='de-DE';
+  msg.text=text;
+  window.speechSynthesis.speak(msg);
+}
+</script>
+
+<!-- Quiz -->
+<section id="quiz">
+<h2>Mini Test</h2>
+<div class="quiz-question" data-correct="0">
+<p>1. "Apfel" nedir?</p>
+<button class="quiz-option">Elma</button>
+<button class="quiz-option">Ekmek</button>
+<button class="quiz-option">Su</button>
+</div>
+<div class="quiz-question" data-correct="1">
+<p>2. "Brot" nedir?</p>
+<button class="quiz-option">Elma</button>
+<button class="quiz-option">Ekmek</button>
+<button class="quiz-option">Su</button>
+</div>
+<p>Puanın: <span id="score">0</span></p>
+<button onclick="restartQuiz()">Testi Yeniden Başlat</button>
+</section>
+
+<script>
+let score=0;
+document.querySelectorAll('.quiz-question').forEach(q=>{
+  const correctIndex = parseInt(q.dataset.correct);
+  q.querySelectorAll('.quiz-option').forEach((btn,i)=>{
+    btn.addEventListener('click',()=>{
+      if(i===correctIndex){btn.classList.add('correct'); score++; alert('Doğru!');}
+      else{btn.classList.add('wrong'); alert('Yanlış!');}
+      document.getElementById('score').textContent = score;
+    });
+  });
+});
+function restartQuiz(){
+  score=0;
+  document.getElementById('score').textContent=0;
+  document.querySelectorAll('.quiz-option').forEach(btn=>btn.classList.remove('correct','wrong'));
 }
 </script>
 
