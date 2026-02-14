@@ -1,72 +1,49 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="de">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mein Deutsch Weg</title>
+  <title>Derya's Deutsch</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <!-- Ana içerik -->
-    <div class="content">
-      <div id="home" class="tab-content active">
-        <h1>Mein Deutsch Weg</h1>
-        <p>Almanca öğrenmeye hoş geldiniz! Aşağıdaki butonlarla hızlıca başlayabilirsiniz.</p>
-        <div class="home-buttons">
-          <button onclick="openTab('lessons')">Derslere Başla</button>
-          <button onclick="openTab('quiz')">Quiz Yap</button>
-          <button onclick="openTab('resources')">Kaynaklar</button>
-        </div>
-      </div>
-
-      <div id="lessons" class="tab-content">
-        <h2>Dersler</h2>
-        <p>Alfabe, temel kelimeler, cümle yapısı ve dil bilgisi dersleri burada olacak.</p>
-      </div>
-
-      <div id="quiz" class="tab-content">
-        <h2>Quiz</h2>
-        <p>Öğrendiklerini test et: kısa quizler burada olacak.</p>
-      </div>
-
-      <div id="resources" class="tab-content">
-        <h2>Kaynaklar</h2>
-        <p>PDF, videolar ve ekstra alıştırmalar buradan ulaşılabilir.</p>
-      </div>
+  <!-- HEADER -->
+  <header>
+    <div class="logo">
+      <span class="logo-text">Derya’s Deutsch</span>
+      <img src="german-flag.png" alt="German Flag" class="flag">
     </div>
+    <div class="hamburger" id="hamburger">☰</div>
+  </header>
 
-    <!-- Sağ sidebar sekmeler -->
-    <div class="sidebar">
-      <button class="tab-btn active" data-tab="home">Ana Sayfa</button>
-      <button class="tab-btn" data-tab="lessons">Dersler</button>
-      <button class="tab-btn" data-tab="quiz">Quiz</button>
-      <button class="tab-btn" data-tab="resources">Kaynaklar</button>
+  <!-- HAMBURGER MENÜ -->
+  <nav class="nav" id="nav">
+    <ul>
+      <li><a href="#vocabulary">Kelimeler</a></li>
+      <li><a href="#sentences">Cümleler</a></li>
+      <li><a href="#quiz">Quiz</a></li>
+      <li><a href="#notes">Notlar</a></li>
+      <li><a href="#about">Hakkımda</a></li>
+      <li><a href="#sources">Kaynaklar</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO / ANA BÖLÜM -->
+  <section class="hero">
+    <h1 class="animated-title">Let’s speak Deutsch!</h1>
+    <p class="motivation">Kleine Schritte, große Fortschritte.</p>
+    <div class="buttons">
+      <a href="#vocabulary" class="btn">Kelimeler</a>
+      <a href="#sentences" class="btn">Cümleler</a>
+      <a href="#quiz" class="btn">Quiz</a>
+      <a href="#notes" class="btn">Notlar</a>
     </div>
-  </div>
+  </section>
 
-  <script>
-    const buttons = document.querySelectorAll(".tab-btn");
-    const contents = document.querySelectorAll(".tab-content");
+  <!-- SU KABARCIKLARI -->
+  <div class="bubbles"></div>
 
-    buttons.forEach(btn => {
-      btn.addEventListener("click", () => {
-        buttons.forEach(b => b.classList.remove("active"));
-        contents.forEach(c => c.classList.remove("active"));
-
-        btn.classList.add("active");
-        document.getElementById(btn.dataset.tab).classList.add("active");
-      });
-    });
-
-    function openTab(tabId) {
-      document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
-      document.querySelectorAll(".tab-content").forEach(c => c.classList.remove("active"));
-
-      const btn = document.querySelector(`.tab-btn[data-tab="${tabId}"]`);
-      if (btn) btn.classList.add("active");
-      document.getElementById(tabId).classList.add("active");
-    }
-  </script>
+  <script src="script.js"></script>
 </body>
-  </html>
+</html>
